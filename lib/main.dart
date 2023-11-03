@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_sample/components/setting_themes.dart';
-import 'package:theme_sample/pages/home_page.dart';
+import 'package:theme_sample/pages/home_index.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Deal&Connect', // 디바이스의 작업줄에 표시역할
       theme: SettingThemes.lightTheme,
-      debugShowCheckedModeBanner: true,
-      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
+      home: const HomeIndex(),
 
       /*
       // 기기설정 폰트 사이즈에 의존하지 않을 경우 주석해제

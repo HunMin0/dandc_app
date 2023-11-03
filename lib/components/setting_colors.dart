@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // 단일컬러 설정
 class SettingColors {
-  static const int _primaryColorValue = 0xFF151515;
+  static const int _primaryColorValue = 0xFFFFFFFF;
   static const primaryColor = Color(_primaryColorValue);
 
   static const MaterialColor primaryMeterialColor = MaterialColor(
