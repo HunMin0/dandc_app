@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:theme_sample/pages/add/add_page.dart';
+import 'package:theme_sample/pages/add/add_section.dart';
 import 'package:theme_sample/pages/home/group_card.dart';
 import 'package:theme_sample/pages/home/list_card.dart';
 
@@ -135,7 +135,7 @@ class _HomeSectionState extends State<HomeSection> {
     return InkWell(
       onTap: (){
         Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AddPage()), // 배너 클릭 이동화면
+          context, MaterialPageRoute(builder: (context) => AddSection()), // 배너 클릭 이동화면
         );
       },
       child: Padding(

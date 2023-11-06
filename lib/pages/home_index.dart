@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:theme_sample/components/setting_colors.dart';
-import 'package:theme_sample/pages/add/add_page.dart';
-import 'package:theme_sample/pages/history/history_page.dart';
+import 'package:theme_sample/pages/add/add_section.dart';
+import 'package:theme_sample/pages/business/business_section.dart';
+import 'package:theme_sample/pages/history/history_section.dart';
 import 'package:theme_sample/pages/home/home_sction.dart';
+import 'package:theme_sample/pages/profile/profile_section.dart';
 
 class HomeIndex extends StatefulWidget {
   const HomeIndex({Key? key}) : super(key: key);
@@ -16,8 +18,11 @@ class _HomePageState extends State<HomeIndex> {
 
   int _currentIndex = 0;
   final _pages = [
-    const HomeSection(),
-    const HistoryPage(),
+    const HomeSection(), // 메인홈
+    const HistorySection(), // 거래내역
+    const AddSection(), // 거래추가
+    const BusinessSection(), // 사업장찾기
+    const ProfileSection(), // 프로필
   ];
 
   @override
@@ -28,7 +33,14 @@ class _HomePageState extends State<HomeIndex> {
         top: false, // safearea까지 먹힌 색을 top은 미적용 처리
         child: Scaffold(
           appBar: AppBar(
-            title: Image.asset('assets/images/logo.png', width: 170, fit: BoxFit.contain,),
+            title: GestureDetector(
+              onTap: (){
+                setState(() {
+                  _currentIndex = 0;
+                });
+              },
+              child: Image.asset('assets/images/logo.png', width: 170, fit: BoxFit.contain,),
+            ),
             elevation: 0,
             actions: [
               AppBarAction(
@@ -54,77 +66,60 @@ class _HomePageState extends State<HomeIndex> {
             onPressed: _onAddMedicien,
             child: const Icon(CupertinoIcons.add),
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, // floatingAction위치
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // floatingAction위치
 
-          bottomNavigationBar: _buildBottomAppBar(),
+          bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: SettingColors.primaryMeterialColor,
+            elevation: 0,
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+            currentIndex: _currentIndex, // 선택된 인덱스의 값을 얻는다
+            selectedItemColor: Color(0xFF3c3c3c),
+            unselectedItemColor: Color(0xFFc3c3c3),
+            type: BottomNavigationBarType.fixed, // 라벨의 텍스트 노출
+            selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0,), // 활성화된 라벨의 텍스트 스타일
+            unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0,), // 비활성화된 라벨의 텍스트 스타일
+
+            items: <BottomNavigationBarItem>[
+              _buildBottomItem('assets/images/icons/home_icon', '홈', 0),
+              _buildBottomItem('assets/images/icons/history_icon', '거래내역', 1),
+              _buildBottomItem('assets/images/icons/add_icon', '거래추가', 2),
+              _buildBottomItem('assets/images/icons/business_icon', '사업장찾기', 3),
+              _buildBottomItem('assets/images/icons/profile_icon', '프로필', 4),
+            ],
+
+          ),
         ),
       ),
     );
   }
 
-  BottomAppBar _buildBottomAppBar() {
-    return BottomAppBar(
-      elevation: 0, // 바텀바 밑으로 그림자 처리제거
-      child: Container(
-        color: Colors.white,
-        height: kBottomNavigationBarHeight, // material앱에 기본설정으로 잡혀있는 바텀높이
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            CupertinoButton(
-              onPressed: () => _onCurrentPage(0),
-              child: Icon(
-                CupertinoIcons.home,
-                color: _currentIndex == 0 ? Colors.black : Colors.grey[350], // 활성화시 아이콘 색상변화
-              ),
-            ),
-            CupertinoButton(
-              onPressed: () => _onCurrentPage(0),
-              child: Icon(
-                CupertinoIcons.check_mark,
-                color: _currentIndex == 1 ? Colors.black : Colors.grey[350], // 활성화시 아이콘 색상변화
-              ),
-            ),
-            CupertinoButton(
-              onPressed: () => _onCurrentPage(0),
-              child: Icon(
-                CupertinoIcons.check_mark,
-                color: _currentIndex == 2 ? Colors.black : Colors.grey[350], // 활성화시 아이콘 색상변화
-              ),
-            ),
-            CupertinoButton(
-              onPressed: () => _onCurrentPage(0),
-              child: Icon(
-                CupertinoIcons.check_mark,
-                color: _currentIndex == 3 ? Colors.black : Colors.grey[350], // 활성화시 아이콘 색상변화
-              ),
-            ),
-
-            // CupertinoButton(
-            //   onPressed: () => _onCurrentPage(1),
-            //   child: Icon(
-            //     CupertinoIcons.text_badge_checkmark,
-            //     color: _currentIndex == 4 ? SettingColors.primaryColor : Colors.grey[350], // 활성화시 아이콘 색상변화
-            //   ),
-            // ),
-
-          ],
-        ),
-      ),
-    );
+  // bottom 네비게이션 영역
+  BottomNavigationBarItem _buildBottomItem(String imagePath, String label, int index) {
+    return BottomNavigationBarItem(
+        icon: _currentIndex == index
+          ? ImageIcon(
+            AssetImage('$imagePath'+'_over.png'),
+              size: 20.0,
+          )
+          : ImageIcon(
+          AssetImage('$imagePath'+'.png'),
+            size: 20.0,
+          ),
+        label: label,
+      );
   }
 
-  void _onCurrentPage(int pageIndex){
-    setState(() {
-      _currentIndex = pageIndex;
-    });
-  }
-
+  // 플로팅액션버튼 푸쉬 페이지
   void _onAddMedicien(){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AddPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AddSection()));
   }
 }
 
+  // 앱바 액션영역
 class AppBarAction extends StatelessWidget {
   final String imagePath;
   final Function() onTap;

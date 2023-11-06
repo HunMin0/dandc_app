@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HistoryPage extends StatelessWidget {
-  const HistoryPage({Key? key}) : super(key: key);
+class HistorySection extends StatelessWidget {
+  const HistorySection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
