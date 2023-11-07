@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:theme_sample/components/setting_colors.dart';
+import 'package:theme_sample/components/const/setting_colors.dart';
 import 'package:theme_sample/pages/add/add_section.dart';
 import 'package:theme_sample/pages/business/business_section.dart';
 import 'package:theme_sample/pages/history/history_section.dart';
@@ -33,6 +33,7 @@ class _HomePageState extends State<HomeIndex> {
         top: false, // safearea까지 먹힌 색을 top은 미적용 처리
         child: Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false, // 뒤로가기 버튼 제거처리
             title: GestureDetector(
               onTap: (){
                 setState(() {

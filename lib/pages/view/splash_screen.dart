@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:theme_sample/components/const/data.dart';
 import 'package:theme_sample/components/layout/default_layout.dart';
-import 'package:theme_sample/components/setting_colors.dart';
+import 'package:theme_sample/components/const/setting_colors.dart';
 import 'package:theme_sample/pages/home_index.dart';
+import 'package:theme_sample/user/view/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,11 +16,39 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
-
   @override
   void initState() {
     super.initState();
-    startTimer();
+
+    Timer(Duration(seconds: 2),(){
+      //deleteToken();
+      checkToken();
+    });
+
+  }
+
+  void deleteToken() async {
+    await storage.deleteAll();
+  }
+
+  void checkToken() async {
+    final refreshToken = await storage.read(key: REFRESH_TOKEN_KEN);
+    final accessToken = await storage.read(key: ACCESS_TOKEN_KEN);
+
+    // token 없다면 로그인
+    if(refreshToken == null || accessToken == null){
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (_) => LoginScreen(),
+          ),
+      (route) => false);
+    } else { // token이 유효한지도 체크해야함
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (_) => HomeIndex(),
+          ),
+              (route) => false);
+    }
   }
 
   @override
@@ -47,15 +77,14 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  void startTimer() {
-    Timer(Duration(seconds: 5), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeIndex()), // 이동할 화면을 설정합니다.
-      );
-    });
-  }
 
 }
 
 
+/*
+
+  flutter_secure_storage 처리
+  리플래시/액세스 토큰처리 후 별도처리
+  백그라운드 이동후 반복적인 로그인 상태 처리
+
+*/

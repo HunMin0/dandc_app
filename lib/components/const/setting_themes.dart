@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theme_sample/components/setting_colors.dart';
+import 'package:theme_sample/components/const/setting_colors.dart';
 
 // light 테마
 class SettingThemes {

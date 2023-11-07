@@ -34,7 +34,8 @@ class ListCard extends StatelessWidget {
         child: Row(
           children: [
             Stack(
-              overflow: Overflow.visible,
+              //overflow: Overflow.visible,
+              clipBehavior: Clip.none,
               children: [
                 Container(
                   width: 70,
