@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:theme_sample/components/const/setting_colors.dart';
-import 'package:theme_sample/pages/add/add_section.dart';
-import 'package:theme_sample/pages/business/business_section.dart';
-import 'package:theme_sample/pages/history/history_section.dart';
-import 'package:theme_sample/pages/home/home_sction.dart';
-import 'package:theme_sample/pages/profile/profile_section.dart';
+import 'package:DealConnect/components/const/setting_colors.dart';
+import 'package:DealConnect/pages/add/add_section.dart';
+import 'package:DealConnect/pages/business/business_section.dart';
+import 'package:DealConnect/pages/history/history_section.dart';
+import 'package:DealConnect/pages/home/home_sction.dart';
+import 'package:DealConnect/pages/profile/profile_section.dart';
 
 class HomeIndex extends StatefulWidget {
   const HomeIndex({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class _HomePageState extends State<HomeIndex> {
 
   int _currentIndex = 0;
   final _pages = [
-    const HomeSection(), // 메인홈
+    HomeSection(onTab:(){} ), // 메인홈
     const HistorySection(), // 거래내역
     const AddSection(), // 거래추가
     const BusinessSection(), // 사업장찾기

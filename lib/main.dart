@@ -1,10 +1,15 @@
+import 'package:DealConnect/pages/auth/login/email.dart';
+import 'package:DealConnect/pages/auth/login/index.dart';
+import 'package:DealConnect/pages/home/index.dart';
+import 'package:DealConnect/pages/intro.dart';
+import 'package:DealConnect/pages/root.dart';
 import 'package:flutter/material.dart';
-import 'package:theme_sample/components/const/setting_themes.dart';
-import 'package:theme_sample/components/custom/custom_text_form_field.dart';
-import 'package:theme_sample/components/const/setting_themes.dart';
-import 'package:theme_sample/pages/home_index.dart';
-import 'package:theme_sample/pages/view/splash_screen.dart';
-import 'package:theme_sample/user/view/login_screen.dart';
+import 'package:DealConnect/components/const/setting_themes.dart';
+import 'package:DealConnect/components/custom/custom_text_form_field.dart';
+import 'package:DealConnect/components/const/setting_themes.dart';
+import 'package:DealConnect/pages/home_index.dart';
+import 'package:DealConnect/pages/view/splash_screen.dart';
+import 'package:DealConnect/pages/auth/login/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Deal&Connect', // 디바이스의 작업줄에 표시역할
       theme: SettingThemes.lightTheme,
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      //home: const SplashScreen(),
       //home: const HomeIndex(),
       //home: LoginScreen(),
 
@@ -30,6 +35,19 @@ class MyApp extends StatelessWidget {
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
       ),
       */
+
+      /*
+      기존 bu셋팅 */
+
+      initialRoute: '/',
+      routes: {
+        '/': (context) => RootPage(),
+        '/home': (context) => HomeIndex(),
+        '/intro': (context) => IntroPage(),
+        '/login': (context) => LoginIndex(),
+        '/login/email': (context) => EmailLoginPage(),
+      }
+
 
     );
   }

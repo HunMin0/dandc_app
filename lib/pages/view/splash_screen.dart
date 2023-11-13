@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:theme_sample/components/const/data.dart';
-import 'package:theme_sample/components/layout/default_layout.dart';
-import 'package:theme_sample/components/const/setting_colors.dart';
-import 'package:theme_sample/pages/home_index.dart';
-import 'package:theme_sample/user/view/login_screen.dart';
+import 'package:DealConnect/components/const/data.dart';
+import 'package:DealConnect/components/layout/default_layout.dart';
+import 'package:DealConnect/components/const/setting_colors.dart';
+import 'package:DealConnect/pages/home_index.dart';
+import 'package:DealConnect/pages/auth/login/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

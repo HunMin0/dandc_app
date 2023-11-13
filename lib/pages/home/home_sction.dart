@@ -1,17 +1,31 @@
+import 'package:DealConnect/Utils/shared_pref_utils.dart';
+import 'package:DealConnect/model/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:theme_sample/pages/add/add_section.dart';
-import 'package:theme_sample/pages/home/group_card.dart';
-import 'package:theme_sample/pages/home/list_card.dart';
+import 'package:DealConnect/pages/add/add_section.dart';
+import 'package:DealConnect/pages/home/group_card.dart';
+import 'package:DealConnect/pages/home/list_card.dart';
 
 class HomeSection extends StatefulWidget {
-  const HomeSection({Key? key}) : super(key: key);
+  Function onTab;
+
+  HomeSection({required this.onTab, Key? key}) : super(key: key);
 
   @override
   State<HomeSection> createState() => _HomeSectionState();
 }
 
 class _HomeSectionState extends State<HomeSection> {
+  var navHeight = 0.0;
+  User? myUser;
+
+  @override
+  void initState() {
+    _initMyUser();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -170,5 +184,23 @@ class _HomeSectionState extends State<HomeSection> {
         ),
       ),
     );
+  }
+
+  void _initMyUser() {
+    SharedPrefUtils.getUser().then((value) {
+      setState(() {
+        myUser = value;
+      });
+    });
+  }
+
+
+
+  @override
+  void dispose() {
+    // marketingVideoControllers.forEach((controller) {
+    //   controller.dispose();
+    // });
+    super.dispose();
   }
 }

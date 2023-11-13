@@ -3,11 +3,25 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:theme_sample/components/const/data.dart';
-import 'package:theme_sample/components/custom/custom_text_form_field.dart';
-import 'package:theme_sample/components/layout/default_layout.dart';
-import 'package:theme_sample/components/const/setting_colors.dart';
-import 'package:theme_sample/pages/home_index.dart';
+import 'package:DealConnect/components/const/data.dart';
+import 'package:DealConnect/components/custom/custom_text_form_field.dart';
+import 'package:DealConnect/components/layout/default_layout.dart';
+import 'package:DealConnect/components/const/setting_colors.dart';
+import 'package:DealConnect/pages/home_index.dart';
+
+/*
+  참고용~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  추후 삭제~~~~~~~~~~~~~~~~~~~~~~~~~~
+  참고용~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  추후 삭제~~~~~~~~~~~~~~~~~~~~~~~~~~
+  참고용~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  추후 삭제~~~~~~~~~~~~~~~~~~~~~~~~~~
+  참고용~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  추후 삭제~~~~~~~~~~~~~~~~~~~~~~~~~~
+  참고용~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  추후 삭제~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
